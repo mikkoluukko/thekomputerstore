@@ -1,0 +1,15 @@
+
+.navbar {
+    overflow: hidden;
+    background-color: #333;
+    color: #f2f2f2;
+    padding: 20px;
+}
+
+.top-part {
+    display: flex;
+}
+
+.section {
+    border: solid 1px black;
+}
