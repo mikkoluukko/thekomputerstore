@@ -1,59 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>The Komputer Store</title>
-    <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+
+  <body>
     <nav class="navbar">The Komputer Store</nav>
-    <div class="top-part">
-        <div class="section">
-            <div>Joe Banker</div>
-            <div>
-                <span>Balance</span>
-                <span id="bank-balance"></span> Kr.
-            </div>
-            <div id="loan-div" style="display: none">
-                <span>Outstanding loan</span>
-                <span id="loan-amount"></span> Kr.
-            </div>
+    <div class="container">
+      <div class="top-part">
+        <div class="section small">
+          <div>
+            <p class="title">Joe Banker</p>
+            <span>Balance</span>
+            <span id="bank-balance"></span><span> Kr.</span>
+          </div>
+          <div id="loan-div" style="display: none">
+            <span>Outstanding loan</span>
+            <span id="loan-amount"></span> Kr.
+          </div>
+          <div class="button-section">
             <button id="loan-button">Get a loan</button>
+          </div>          
         </div>
-        <div class="section">
-            <div>Work</div>
-            <div>
-                <span>Pay</span>
-                <span id="pay-span"></span> Kr.
-            </div>
+        <div class="section small">          
+          <div>
+            <p class="title">Work</p>
+            <span>Pay</span>
+            <span id="pay-span"></span> Kr.
+          </div>
+          <div>
+            <button id="pay-loan-button" style="display: none">Repay Loan</button>
+          </div>
+          <div class="button-section">
             <button id="bank-button">Bank</button>
             <button id="work-button">Work</button>
-            <button id="pay-loan-button" style="display: none">Repay Loan</button>
-        </div>        
-        <div class="section">
-            <div>Laptops</div>
-            <select id="laptop-select"></select>
-            <div>
-                <b>Features:</b>
-                <div id="laptop-features"></div>
-            </div>
+          </div>          
         </div>
-    </div>
-
-    <div class="laptop-info">
-        <img src="" alt="">
-        <div>
+        <div class="section small">
+          <div>
+            <p class="title">Laptops</p>
+          </div>
+          <select id="laptop-select"></select>
+          <div>
+            <b>Features:</b>
+            <div id="laptop-features"></div>
+          </div>
+        </div>
+      </div>
+      <div class="bottom-part">
+        <div class="section large">
+          <div id="image-div">
+            <img id="laptop-image" src="" alt="" />
+          </div>          
+          <div id="info-div">
             <div id="laptop-name"></div>
             <div id="laptop-description"></div>
-        </div>
-        <div>
-            <span id="laptop-price"></span> NOK
+          </div>
+          <div id="buy-div">
+            <div id="price-div">
+              <span id="laptop-price"></span><span> NOK</span>
+            </div>            
             <button id="buy-button">BUY NOW</button>
+          </div>
         </div>
+      </div>
     </div>
 
-    <script type="text/javascript" src="js/app.js"></script>
-</body>
+    <script src="js/app.js"></script>
+  </body>
 </html>
