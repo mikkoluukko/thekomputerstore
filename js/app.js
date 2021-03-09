@@ -1,3 +1,5 @@
+import { laptopData } from './laptopData.js';
+
 const loanButton = document.getElementById("loan-button");
 const balanceSpan = document.getElementById("bank-balance");
 const loanDiv = document.getElementById("loan-div");
@@ -25,54 +27,7 @@ let payAmount = 0;
 let laptopPrice = 0;
 updateAmountTexts();
 
-const laptops = [
-  {
-    name: "Intol Celeroon E10",
-    price: 1500,
-    features: [
-      "It has a screen",
-      "There's a keyboard",
-      "(Some keys might be missing)",
-    ],
-    description:
-      "This laptop will turn on! It is perfect for the first " +
-      "time user who likes to have a computer around!",
-    image: "../img/laptop1.jpg"
-  },
-  {
-    name: "Intol Celeroon X3M",
-    price: 2000,
-    features: ["14-inch screen", "Integrated speakers", "Bluetooth"],
-    description:
-      "Extremely stylish computer! Perfect for the user " +
-      "who values style over functionality!",
-    image: "../img/laptop2.jpg"
-  },
-  {
-    name: "Linovo Stinkpad",
-    price: 2500,
-    features: ["15-inch screen", "Odor included", "Ethernet port"],
-    description:
-      "Smelliest business laptop around! Perfect for the user " +
-      "with a nose for quality!",
-    image: "../img/laptop3.jpg"
-  },
-  {
-    name: "PowerPotato 3000",
-    price: 3000,
-    features: [
-      "Hologram display",
-      "Thought control input",
-      "Weight only 0.1 kg",
-    ],
-    description:
-      "Half potato, half science fiction! Perfect for the " +
-      "power user who desires the best possible quality!",
-    image: "../img/laptop4.jpg"      
-  },
-];
-
-for (const [index, laptop] of laptops.entries()) {
+for (const [index, laptop] of laptopData.entries()) {
   let option = document.createElement("option");
   option.value = index;
   option.innerHTML = laptop.name;
@@ -80,7 +35,7 @@ for (const [index, laptop] of laptops.entries()) {
 }
 
 let selectedLaptop =
-  laptops[Number(laptopSelect[laptopSelect.selectedIndex].value)];
+  laptopData[Number(laptopSelect[laptopSelect.selectedIndex].value)];
 updateSelectedLaptop();
 
 loanButton.onclick = () => {
@@ -89,23 +44,27 @@ loanButton.onclick = () => {
   } else if (loanAmount > 0) {
     alert("You must pay your earlier loan before getting another one.");
   } else {
-    let loanAttempt = Number(
-      window.prompt("Enter amount of loan you wish to withdraw:", 0)
-    );
-    if (loanAttempt > 2 * balance) {
-      alert("You cannot get a loan more than double of your bank balance.");
-    } else if (loanAttempt != null && loanAttempt > 0) {
-      loansWithdrawn++;
-      loanAmount = loanAttempt;
-      balance += loanAmount;
-      loanDiv.style.display = "block";
-      payLoanButton.style.display = "inline";
-      updateAmountTexts();
-    } else {
-      alert("Invalid loan amount.");
-    }
+    getLoan();
   }
 };
+
+function getLoan() {
+  let loanAttempt = Number(
+    window.prompt("Enter amount of loan you wish to withdraw:", 0)
+  );
+  if (loanAttempt > 2 * balance) {
+    alert("You cannot get a loan more than double of your bank balance.");
+  } else if (loanAttempt != null && loanAttempt > 0) {
+    loansWithdrawn++;
+    loanAmount = loanAttempt;
+    balance += loanAmount;
+    loanDiv.style.display = "block";
+    payLoanButton.style.display = "inline";
+    updateAmountTexts();
+  } else {
+    alert("Invalid loan amount.");
+  }
+}
 
 bankButton.onclick = () => {
   if (loanAmount > 0) {
@@ -136,7 +95,7 @@ payLoanButton.onclick = () => {
 
 laptopSelect.onchange = () => {
   selectedLaptop =
-    laptops[Number(laptopSelect[laptopSelect.selectedIndex].value)];
+    laptopData[Number(laptopSelect[laptopSelect.selectedIndex].value)];
   updateSelectedLaptop();
 };
 
@@ -154,7 +113,7 @@ buyButton.onclick = () => {
 function updateSelectedLaptop() {
   laptopPrice = selectedLaptop.price;
   laptopFeatures.innerHTML = "";
-  for (feature of selectedLaptop.features) {
+  for (const feature of selectedLaptop.features) {
     laptopFeatures.innerHTML += feature + "<br>";
   }
   laptopImage.src = selectedLaptop.image;
